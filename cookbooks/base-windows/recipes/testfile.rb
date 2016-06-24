@@ -1,6 +1,6 @@
 # Add a test file
 
-file 'C:/testfile.txt' do
+file 'C:/users/DomainAdmin/Desktop/testfile.txt' do
   content 'content'
   owner 'root'
   group 'root'
