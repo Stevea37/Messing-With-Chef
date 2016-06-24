@@ -1,6 +1,6 @@
 # Role for base-windows
 
-name 'starter'
-description 'An example Chef role'
+name 'base-windows'
+description 'Role for base-windows'
 run_list 'recipe[base-windows]'
 
