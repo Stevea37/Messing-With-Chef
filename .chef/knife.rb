@@ -5,5 +5,5 @@ log_level                :info
 log_location             STDOUT
 node_name                "cldadmin"
 client_key               "#{current_dir}/cldadmin.pem"
-chef_server_url          "https://40.114.192.172/organizations/cld"
+chef_server_url          "https://cld-chef01.hn1pyqpnexzuljrrx1riyjm5wc.ax.internal.cloudapp.net/organizations/cld"
 cookbook_path            ["#{current_dir}/../cookbooks"]
