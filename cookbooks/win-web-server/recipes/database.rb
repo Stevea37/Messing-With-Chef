@@ -1,7 +1,10 @@
 #
 # Cookbook Name:: win-web-server
-# Recipe:: default
+# Recipe:: database
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-include_recipe 'win-web-server::webapp'
+inclue_recipe 'sql_server::server'
+
+
+
