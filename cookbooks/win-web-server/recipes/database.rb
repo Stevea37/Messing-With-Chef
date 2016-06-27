@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-inclue_recipe 'sql_server::server'
+include_recipe 'sql_server::server'
 
 # Run Create-database.sql - This will create a table called "Customers" within the master database, then add three entries (Steven, Sohpie & Dilan)
 
