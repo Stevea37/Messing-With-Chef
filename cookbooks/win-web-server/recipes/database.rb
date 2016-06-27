@@ -31,3 +31,25 @@ powershell_script 'Initialize Database' do
   (Invoke-Sqlcmd -Query "SELECT COUNT(*) AS Count FROM sys.databases WHERE name = 'learnchef'").Count -eq 0
   EOH
 end
+
+# Run grant-access.sql to give database access to IIS APPPOOL\Products
+grant_access_script_path = win_friendly_path(File.join(Chef::Config[:file_cache_path], 'grant-access.sql'))
+
+## Copy sql file from cookbook to Chef cache
+cookbook_file grant_access_script_path do
+  source 'grant-access.sql'
+end
+
+# Run grant-access.sql if IIS APPPOOL\Products doesn't already have access
+powershell_script 'Grant SQL access to IIS APPPOOL\Products' do
+  code <<-EOH
+  Import-Module "#{sqlps_module_path}"
+  Invoke-Sqlcmd -InputFile #{grant_access_script_path}
+  EOH
+  guard_interpreter :powershell_script
+  only_if <<-EOH
+  Import-Module "#{sqlps_module_path}"
+  $sp = Invoke-sqlcmd -Database learnchef -Query "EXEC sp_helpprotect @username = 'IIS APPPOOL\\Products', @name = 'customers'"
+  ($sp.ProtectType.Trim() -eq 'Grant') -and ($sp.action.Trim() -eq 'Select')
+  EOH
+end

@@ -3,6 +3,7 @@ GO
 
 -- Go create learnchef database
 CREATE DATABASE learnchef;
+GO
 USE learnchef;
 GO
 -- Create the customers table
