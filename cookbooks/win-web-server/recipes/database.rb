@@ -12,7 +12,7 @@ include_recipe 'sql_server::server'
 create_database_script_path = win_friendly_path(File.join(Chef::Config[:file_cache_path], 'create-database.sql'))
 
 ## Copy sql file from cookbook to Chef cache
-cookbook_file 'create_database_script_path' do
+cookbook_file create_database_script_path do
   source 'create-database.sql'
 end
 
